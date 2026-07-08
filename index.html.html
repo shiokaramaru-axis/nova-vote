@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ミューコミVR XIDEN NOVA投票サイト</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+
+margin:0;
+
+padding:20px;
+
+background:#F3EEFA;
+
+font-family:"M PLUS Rounded 1c",sans-serif;
+
+}
+
+.container{
+
+max-width:640px;
+
+margin:auto;
+
+background:white;
+
+border-radius:24px;
+
+padding:42px 30px;
+
+box-shadow:0 12px 35px rgba(0,0,0,.12);
+
+text-align:center;
+
+}
+
+h1{
+
+margin:0 0 18px;
+
+color:#7B2CBF;
+
+font-size:clamp(28px,6vw,44px);
+
+font-weight:800;
+
+line-height:1.35;
+
+letter-spacing:.03em;
+
+}
+
+.sub{
+
+margin-bottom:45px;
+
+font-size:18px;
+
+color:#666;
+
+}
+
+button{
+
+width:100%;
+
+padding:24px;
+
+border:none;
+
+border-radius:18px;
+
+font-size:22px;
+
+font-weight:700;
+
+cursor:pointer;
+
+color:white;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:12px;
+
+transition:.15s;
+
+box-shadow:0 6px 16px rgba(0,0,0,.15);
+
+margin-bottom:26px;
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+}
+
+button:active{
+
+transform:translateY(4px);
+
+box-shadow:0 2px 6px rgba(0,0,0,.18);
+
+}
+
+.post{
+
+background:#8E44AD;
+
+}
+
+.post:hover{
+
+background:#7D3C98;
+
+}
+
+.dm{
+
+background:#3498DB;
+
+margin-bottom:14px;
+
+}
+
+.dm:hover{
+
+background:#2E86C1;
+
+}
+
+.note{
+
+font-size:16px;
+
+line-height:1.8;
+
+color:#666;
+
+margin-bottom:35px;
+
+}
+
+.message{
+
+min-height:55px;
+
+font-size:18px;
+
+font-weight:bold;
+
+color:#16A085;
+
+}
+
+.xicon{
+
+font-size:28px;
+
+font-weight:bold;
+
+}
+
+@media(max-width:600px){
+
+body{
+
+padding:14px;
+
+}
+
+.container{
+
+padding:28px 18px;
+
+border-radius:20px;
+
+}
+
+button{
+
+padding:20px;
+
+font-size:20px;
+
+}
+
+.note{
+
+font-size:15px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+
+ミューコミVR<br>
+
+XIDEN 9th Single NOVA<br>
+
+簡易投票サイト
+
+</h1>
+
+<div class="sub">
+
+お好きな方法で投票してください
+
+</div>
+
+<button class="post" id="postButton">
+
+<span class="xicon">𝕏</span>
+
+<span>Xのポストで投票</span>
+
+</button>
+
+<button class="dm" id="dmButton">
+
+<span class="xicon">𝕏</span>
+
+<span>XのDMで投票</span>
+
+</button>
+
+<p class="note">
+
+※DM画面が開いたら<br>
+
+貼り付け／ペーストして送信してください。<br>
+
+（投票文は自動でコピーされています）
+
+</p>
+
+<div id="message" class="message"></div>
+
+<script>
+const voteText = `(XIDEN)の『NOVA』に投票します！
+
+#VTuber楽曲ランキング #ミューコミVR`;
+
+const tweetUrl =
+  "https://x.com/intent/tweet?text=" + encodeURIComponent(voteText);
+
+const dmUrl =
+  "https://x.com/messages/compose?recipient_id=100786821";
+
+const message =
+  document.getElementById("message");
+
+// Xポスト
+document.getElementById("postButton").addEventListener("click", () => {
+
+  window.open(tweetUrl, "_blank");
+
+});
+
+// X DM
+document.getElementById("dmButton").addEventListener("click", async () => {
+
+  try{
+
+    await navigator.clipboard.writeText(voteText);
+
+    message.innerHTML =
+      "✔ 投票文をコピーしました！<br>DM画面で貼り付け／ペーストして送信してください。";
+
+  }
+
+  catch{
+
+    message.innerHTML =
+      "コピーに失敗しました。手動でコピーしてください。";
+
+  }
+
+  setTimeout(() => {
+
+    window.location.href = dmUrl;
+
+  },300);
+
+});
+
+</script>
+
+</body>
+
+</html>
