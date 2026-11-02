@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -66,13 +67,19 @@ letter-spacing:.03em;
 
 }
 
-.sub{
+/* 1日2票の案内 */
+
+.vote-info{
 
 margin-bottom:45px;
 
-font-size:18px;
+font-size:20px;
 
-color:#666;
+font-weight:800;
+
+color:#000;
+
+line-height:1.6;
 
 }
 
@@ -206,6 +213,12 @@ font-size:20px;
 
 }
 
+.vote-info{
+
+font-size:17px;
+
+}
+
 .note{
 
 font-size:15px;
@@ -232,7 +245,11 @@ XIDEN 9th Single NOVA<br>
 
 </h1>
 
-<div class="sub">
+<!-- 1日2票の案内 -->
+
+<div class="vote-info">
+
+ポスト＆DMで一日2票投票できます！
 
 </div>
 
@@ -265,6 +282,7 @@ XIDEN 9th Single NOVA<br>
 <div id="message" class="message"></div>
 
 <script>
+
 const voteText = `(XIDEN)の『NOVA』に投票します！
 
 #VTuber楽曲ランキング #ミューコミVR`;
@@ -313,6 +331,8 @@ document.getElementById("dmButton").addEventListener("click", async () => {
 });
 
 </script>
+
+</div>
 
 </body>
 
